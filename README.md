@@ -24,57 +24,33 @@ I tested this project end-to-end with my own Anthropic (Claude Haiku 4.5) API ke
 
 ## Demo
 
-Qualitative query (semantic search + cited answer):
+**Qualitative query (semantic search + cited answer):**
 
 ```
 $ python -m src.cli -q "What is our company's security policy?"
-
-[QUALITATIVE] What is our company's security policy?
-------------------------------------------------------------
-Based on our documentation (security_policy.md), our company security policy includes:
-
-## Access Control
-All employees must use multi-factor authentication (MFA) for access to
-company systems... Access to production systems is granted on a
-least-privilege basis and reviewed quarterly by the Security team.
-
-## Incident Response
-Any suspected security incident must be reported to security@company.com
-within one hour of discovery, following a four-phase runbook:
-containment, eradication, recovery, post-incident review.
-
-Sources:
-  - security_policy.md (security_policy::0), similarity=0.7898
-  - security_policy.md (security_policy::1), similarity=0.5098
-  - security_policy.md (security_policy::3), similarity=0.4485
 ```
+<img width="1465" height="635" alt="Screenshot 2026-09-25 142156" src="https://github.com/user-attachments/assets/b06764ee-9055-4d76-9190-7c41513f2b87" />
 
-Quantitative query (NL-to-SQL + execution + insight):
+
+
+**Quantitative query (NL-to-SQL + execution + insight):**
 
 ```
 $ python -m src.cli -q "Show me monthly revenue trends"
-
-[QUANTITATIVE] Show me monthly revenue trends
-------------------------------------------------------------
-Revenue remained relatively stable throughout 2024, fluctuating between
-approximately $119K and $128K per month. The strongest performance
-occurred in September and October, while January was the weakest month.
-
-SQL: SELECT strftime('%Y-%m', sale_date) as month, SUM(revenue) as total_revenue FROM sales GROUP BY strftime('%Y-%m', sale_date) ORDER BY month;
-month      total_revenue
--------  ---------------
-2024-01           119422
-2024-02           120435
-2024-03           127752
-...
-2024-12           125784
 ```
+<img width="1465" height="617" alt="Screenshot 2026-09-25 142357" src="https://github.com/user-attachments/assets/f491a0b7-f546-4fa5-8414-e19d186ddf08" />
 
-Try a complex query to see both agents merge into one labeled response:
+
+
+
+**Try a complex query to see both agents merge into one labeled response:**
 
 ```bash
 python -m src.cli -q "Compare Q4 performance across regions and explain our code review process"
 ```
+
+<img width="1472" height="812" alt="Screenshot 2026-09-25 142459" src="https://github.com/user-attachments/assets/e9f3cd59-aec7-4065-a5c8-d0de9e71065f" />
+
 
 ## Project layout
 
