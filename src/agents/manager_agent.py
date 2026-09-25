@@ -1,4 +1,3 @@
-"""Manager agent: classifies queries and routes them to the right specialist agent(s)."""
 from __future__ import annotations
 
 from dataclasses import dataclass
@@ -30,7 +29,6 @@ class ManagerResponse:
 
 
 class ManagerAgent:
-    """Routes each query to the qualitative agent, quantitative agent, or both."""
 
     def __init__(
         self,
